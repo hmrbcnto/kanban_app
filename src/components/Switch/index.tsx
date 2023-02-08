@@ -18,6 +18,8 @@ const Switch: React.FC<SwitchProps> = ({
         checked={checked}
         checkedIcon={false}
         uncheckedIcon={false}
+        onColor={onColor}
+        offColor={offColor}
       />
       {rightIcon}
     </div>
