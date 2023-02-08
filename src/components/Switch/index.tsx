@@ -4,17 +4,20 @@ import { SwitchProps } from './Switch.types';
 
 const Switch: React.FC<SwitchProps> = ({
   onClick,
-  switchColor,
+  onColor,
+  offColor,
   leftIcon,
   rightIcon,
   checked
 }) => {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 justify-center items-center">
       {leftIcon}
       <ReactSwitch 
         onChange={onClick}
         checked={checked}
+        checkedIcon={false}
+        uncheckedIcon={false}
       />
       {rightIcon}
     </div>
