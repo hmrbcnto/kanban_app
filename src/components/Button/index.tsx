@@ -12,15 +12,16 @@ const Button: React.FC<ButtonProps> = ({
   const typeColors = ButtonConstants[type];
   const primaryClasses = twMerge(`
     ${typeColors}
-    ${size === 'large' ? 'h-12' : 'h-10'}
+    ${size === 'large' ? 'h-12' : 'h-10 max-h-10'}
     w-full
-    p-6
+    p-4
     rounded-full
     flex
     items-center
     justify-center
     hover:cursor-pointer
     w-60
+    select-none
   `)
   return (
     <div className={primaryClasses}>
