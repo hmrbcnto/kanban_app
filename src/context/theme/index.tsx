@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ThemeContext from './Theme';
 
 const ThemeContextWrapper: React.FC<{ children: React.ReactNode | React.ReactNode[] }> = ({ children }) => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState('light');
 
   const changeCurrentTheme = (newTheme: 'light' | 'dark') => {
     setTheme(newTheme);
@@ -17,6 +17,10 @@ const ThemeContextWrapper: React.FC<{ children: React.ReactNode | React.ReactNod
       document.body.classList.add('dark');
     }
   }, [theme]);
+
+  useEffect(() => {
+    setTheme(localStorage.getItem(theme) || 'light');
+  }, []);
 
   return <ThemeContext.Provider value={{ currentTheme: theme, changeCurrentTheme }}> {children} </ThemeContext.Provider>
 };

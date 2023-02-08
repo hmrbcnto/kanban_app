@@ -12,6 +12,7 @@ export default function Home() {
         <div className="p-6 flex flex-col gap-6">
           <Button
             text="Hello World!"
+            type="secondary"
           />
           <ThemeSwitch />
         </div>
