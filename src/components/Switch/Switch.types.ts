@@ -4,5 +4,5 @@ export interface SwitchProps {
   offColor?: string;
   leftIcon?: React.ReactNode | React.ReactNode[];
   rightIcon?: React.ReactNode | React.ReactNode[];
-  checked: boolean;
+  isChecked: boolean;
 };

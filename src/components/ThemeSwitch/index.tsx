@@ -13,7 +13,7 @@ const ThemeSwitch: React.FC = () => {
       leftIcon={<Image src={lightSvg} alt="sun"/>}
       rightIcon={<Image src={darkSvg} alt="moon" />}
       onClick={() =>  { changeCurrentTheme(currentTheme === 'light' ? 'dark' : 'light') }}
-      checked={currentTheme === 'dark'}
+      isChecked={currentTheme === 'dark'}
     />
   );
 };

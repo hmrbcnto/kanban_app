@@ -10,7 +10,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   text
 }) => {
   const isBoxChecked = isChecked ? 'bg-main_purple' : 'dark:bg-dark_grey bg-white'
-  const checkedClasses = isChecked ? 'line-through text-medium_grey' : '';
+  const checkedClasses = isChecked ? 'line-through text-dark_lines' : '';
   const primaryClassNames = twMerge(`
     flex
     bg-light_grey
@@ -31,7 +31,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   return (
     <div className={primaryClassNames} onClick={onClick}>
       <div className={`${isBoxChecked} h-4 w-4 border border-solid flex items-center justify-center rounded-sm`}>
-        <Image className={isChecked ? 'visible z-2' : 'hidden' } src={checkIcon} alt="check icon" />
+        <Image className={isChecked ? 'visible z-2' : 'hidden' } src={checkIcon} alt="check icon" width={10} height={8}/>
       </div>
       {text}
     </div>

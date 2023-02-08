@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  checked: true,
+  isChecked: true,
   onColor: '#635FC7',
   offColor: '#A8A4FF',
   leftIcon: 'Hello',
