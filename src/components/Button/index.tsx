@@ -10,6 +10,7 @@ const Button: React.FC<ButtonProps> = ({
   text
 }) => {
   const typeColors = ButtonConstants[type];
+  const disabledClasses = isDisabled ? 'pointer-events-none hover:cursor-not-allowed opacity-50' : '';
   const primaryClasses = twMerge(`
     ${typeColors}
     ${size === 'large' ? 'h-12' : 'h-10 max-h-10'}
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
     hover:cursor-pointer
     w-60
     select-none
+    ${disabledClasses}
   `)
   return (
     <div className={primaryClasses}>
