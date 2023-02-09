@@ -51,8 +51,8 @@ const Dropdown: React.FC<DropdownProps> = ({
       >
         <span>{value || ''}</span>
         { isListOpen ? 
-          <Image src={chevronUp} alt="chevron up" /> :
-          <Image src={chevronDown} alt="chevron down" /> 
+          <Image src={chevronUp} alt="chevron up" width={10} height={7} /> :
+          <Image src={chevronDown} alt="chevron down"  width={10} height={7} /> 
         }
       </div>
       <div
