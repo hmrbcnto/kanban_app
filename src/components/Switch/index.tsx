@@ -8,18 +8,19 @@ const Switch: React.FC<SwitchProps> = ({
   offColor,
   leftIcon,
   rightIcon,
-  checked
+  isChecked
 }) => {
   return (
     <div className="flex gap-2 justify-center items-center">
       {leftIcon}
       <ReactSwitch 
         onChange={onClick}
-        checked={checked}
+        checked={isChecked}
         checkedIcon={false}
         uncheckedIcon={false}
         onColor={onColor}
         offColor={offColor}
+        height={24}
       />
       {rightIcon}
     </div>

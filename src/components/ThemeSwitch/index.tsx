@@ -9,12 +9,16 @@ const ThemeSwitch: React.FC = () => {
   const { currentTheme, changeCurrentTheme } = useContext(ThemeContext);
 
   return (
-    <Switch
-      leftIcon={<Image src={lightSvg} alt="sun"/>}
-      rightIcon={<Image src={darkSvg} alt="moon" />}
-      onClick={() =>  { changeCurrentTheme(currentTheme === 'light' ? 'dark' : 'light') }}
-      isChecked={currentTheme === 'dark'}
-    />
+    <div className="w-full bg-light_lines rounded-md p-2">
+      <Switch
+        leftIcon={<Image src={lightSvg} alt="sun" className="text-dark_grey"/>}
+        rightIcon={<Image src={darkSvg} alt="moon" className="text-dark_grey" />}
+        onClick={() =>  { changeCurrentTheme(currentTheme === 'light' ? 'dark' : 'light') }}
+        isChecked={currentTheme === 'dark'}
+        onColor="#635FC7"
+        offColor="#635FC7"
+      />
+    </div>
   );
 };
 
