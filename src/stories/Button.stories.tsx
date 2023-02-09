@@ -26,6 +26,22 @@ export const Primary: ComponentStory<typeof Button> = () => (
     </div>
     <div className="child_story_div">
       <Button 
+        isDisabled={true}
+        text="Disabled Primary Large"
+      />
+      <Button
+        isDisabled={true} 
+        type="secondary"
+        text="Disabled Secondary Large"
+      />
+      <Button 
+        isDisabled={true}
+        type="destructive"
+        text="Disabled Destructive Large"
+      />
+    </div>
+    <div className="child_story_div">
+      <Button 
         text="Primary Small"
         size="small"
       />
@@ -37,6 +53,25 @@ export const Primary: ComponentStory<typeof Button> = () => (
       <Button 
         type="destructive"
         text="Destructive Small"
+        size="small"
+      /> 
+    </div>
+    <div className="child_story_div">
+      <Button 
+        isDisabled={true}
+        text="Disabled Primary Small"
+        size="small"
+      />
+      <Button 
+        isDisabled={true}
+        type="secondary"
+        text="Disabled Secondary Small"
+        size="small"
+      />
+      <Button 
+        isDisabled={true}
+        type="destructive"
+        text="Disabled Destructive Small"
         size="small"
       /> 
     </div>
