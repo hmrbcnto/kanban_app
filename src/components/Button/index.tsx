@@ -7,7 +7,8 @@ const Button: React.FC<ButtonProps> = ({
   type = 'primary',
   isDisabled,
   size='large',
-  text
+  text,
+  onClick
 }) => {
   const typeColors = ButtonConstants[type];
   const disabledClasses = isDisabled ? 'pointer-events-none hover:cursor-not-allowed opacity-50' : '';
@@ -26,7 +27,10 @@ const Button: React.FC<ButtonProps> = ({
     ${disabledClasses}
   `)
   return (
-    <div className={primaryClasses}>
+    <div 
+      className={primaryClasses}
+      onClick={() => onClick ? onClick() : {}}
+    >
       {text}
     </div>
   )
