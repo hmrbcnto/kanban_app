@@ -5,6 +5,7 @@ const ThemeContextWrapper: React.FC<{ children: React.ReactNode | React.ReactNod
   const [theme, setTheme] = useState('light');
 
   const changeCurrentTheme = (newTheme: 'light' | 'dark') => {
+    console.log('changing theme');
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
   }
