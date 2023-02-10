@@ -14,9 +14,12 @@ import Image from 'next/image';
 import Button from '../Button';
 import ThemeSwitch from '../ThemeSwitch';
 import MenuItem from './MenuItem';
+import Modal from '../Modal';
 
 const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
   const [openMenu, setOpenMenu] = useState<boolean>(true);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+
   const mobileMenuBarClasses = twMerge(`
     absolute
     fixed
@@ -70,6 +73,8 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
     ${openMenu ? 'hidden' : 'flex'}
   `);
 
+  const closeFunction = () => setModalVisible(false);
+
   return (
     <>
       {/* Topbar */}
@@ -89,6 +94,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
           <Button
             text={<Image src={addTask} alt="cross icon" className="object-none dark:text" />}
             type="primary"
+            onClick={() => setModalVisible(true)}
           />
           <Image src={verticalEllipsis} alt="vertical ellipsis" className="object-none" />
         </div>
@@ -129,6 +135,17 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
       >
         <Image src={showSidebar} alt="show sidebar" />
       </div>
+      <Modal
+        isVisible={modalVisible}
+        title="Sample Title"
+        closeFunction={closeFunction}
+        isWarning={true}
+      >
+        <Button
+          text="hello world"
+          size="small"
+        />
+      </Modal>
     </>
   )
 };

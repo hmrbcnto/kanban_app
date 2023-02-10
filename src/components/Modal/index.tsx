@@ -27,7 +27,8 @@ const Modal: React.FC<ModalProps> = ({
     dark:bg-dark_grey
     p-6
     rounded-md
-    w-[480px]
+    w-auto
+    lg:min-w-[480px]
     h-auto
     fixed
     shadow-sm

@@ -23,6 +23,7 @@ const TextArea: React.FC<TextAreaProps> = ({
     pl-3
     w-full
     rounded-md
+    resize-none
     ${errorClasses}
   `)
   return (
