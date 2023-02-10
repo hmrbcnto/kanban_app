@@ -6,11 +6,10 @@ const Modal: React.FC<ModalProps> = ({
   title,
   children,
   isVisible,
-  closeFunction
+  closeFunction,
+  isWarning
 }) => {
-
   const fireCloseFunction = (e: any) => e.currentTarget === e.target && closeFunction && closeFunction();
-
   const containerClasses = twMerge(`
     container_div 
     h-screen 
@@ -38,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <div className={containerClasses} onClick={fireCloseFunction}>
       <div className={modalClasses}>
-        <p className="font-semibold text-lg dark:text-white mb-4">{title}</p>
+        <p className={`font-semibold text-lg dark:text-white mb-4 ${isWarning ? 'text-main_red' : ''}`}>{title}</p>
         {children}
       </div>
     </div>

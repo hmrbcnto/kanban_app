@@ -3,4 +3,5 @@ export interface ModalProps {
   children?: React.ReactNode | React.ReactNode[];
   isVisible?: boolean;
   closeFunction?: () => void;
+  isWarning?: boolean;
 };
