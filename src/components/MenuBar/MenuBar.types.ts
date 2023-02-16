@@ -4,6 +4,8 @@ export interface MenuBarProps {
 
 export interface MenuItemProps {
   display: string;
-  link: string;
+  link?: string;
   isActive?: string;
+  onClick?: () => void;
+  isCreate?: boolean;
 };

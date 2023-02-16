@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { MenuBarProps, MenuItemProps } from './MenuBar.types';
 import logoMobile from '../../../assets/logo-mobile.svg';
@@ -15,10 +15,11 @@ import Button from '../Button';
 import ThemeSwitch from '../ThemeSwitch';
 import MenuItem from './MenuItem';
 import Modal from '../Modal';
+import ModalContext from '@/context/modal/Modal';
 
 const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
-  const [openMenu, setOpenMenu] = useState<boolean>(true);
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const { setIsModalVisible } = useContext(ModalContext);
+  const [openMenu, setOpenMenu] = useState<boolean>(false);
 
   const mobileMenuBarClasses = twMerge(`
     absolute
@@ -39,14 +40,16 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
     fixed
     z-[101]
     h-full
-    w-1/3
     bg-white
     dark:bg-dark_grey
     shadow-md
     hidden
-    ${openMenu ? 'sm:flex hidden' : 'hidden'}
+    ${openMenu ? 'sm:flex hidden w-1/3' : 'hidden w-0'}
     flex-col
     justify-between
+    transition
+    ease-in-out
+    duration-300
   `);
 
   const mobileVisibilityClasses = twMerge(`
@@ -54,7 +57,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
     ml-0 
     w-1/16 
     rounded-r-full 
-    p-2 
+    p-4 
     z-[100] 
     absolute 
     fixed 
@@ -63,17 +66,15 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
     bg-main_purple 
     mb-3
     hover:cursor-pointer
-    hidden
+    hover:bg-hover_purple
     sm:flex
-    lg:hidden 
-    ${openMenu ? 'hidden' : 'flex'}
+    hidden
+    ${openMenu ? 'hidden' : 'sm:flex'}
   `);
 
   const logoClasses = twMerge(`
     ${openMenu ? 'hidden' : 'flex'}
   `);
-
-  const closeFunction = () => setModalVisible(false);
 
   return (
     <>
@@ -92,9 +93,9 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
         </div>
         <div className="flex gap-4 w-1/4">
           <Button
-            text={<Image src={addTask} alt="cross icon" className="object-none dark:text" />}
+            text={<><Image src={addTask} alt="cross icon" className="object-none dark:text" /><span className="font-semibold text-white hidden md:block pl-2">Add New Task </span></>}
             type="primary"
-            onClick={() => setModalVisible(true)}
+            onClick={() => setIsModalVisible('task', 'create')}
           />
           <Image src={verticalEllipsis} alt="vertical ellipsis" className="object-none" />
         </div>
@@ -115,6 +116,12 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
                   key={menuItem.link}
                 />
               ))}
+             <MenuItem
+                display="+ Create New Board"
+                key="create_board"
+                onClick={() => setIsModalVisible('board', 'create')}
+                isCreate={true}
+              /> 
           </div>
         </div>
         <div className="flex flex-col p-4 justify-center gap-4">
@@ -135,17 +142,6 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
       >
         <Image src={showSidebar} alt="show sidebar" />
       </div>
-      <Modal
-        isVisible={modalVisible}
-        title="Sample Title"
-        closeFunction={closeFunction}
-        isWarning={true}
-      >
-        <Button
-          text="hello world"
-          size="small"
-        />
-      </Modal>
     </>
   )
 };

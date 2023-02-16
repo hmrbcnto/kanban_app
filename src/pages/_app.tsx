@@ -1,3 +1,4 @@
+import ModalContextWrapper from '@/context/modal';
 import ThemeContextWrapper from '@/context/theme';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
@@ -5,7 +6,9 @@ import type { AppProps } from 'next/app';
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeContextWrapper>
-      <Component {...pageProps} />
+      <ModalContextWrapper>
+        <Component {...pageProps} />
+      </ModalContextWrapper>
     </ThemeContextWrapper>
   )
 }
