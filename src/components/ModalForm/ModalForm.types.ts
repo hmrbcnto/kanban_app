@@ -5,4 +5,6 @@ export interface ModalFormProps {
   method: ModalMethod;
   isVisible: boolean;
   closeFunction: () => void;
+  modalTitle?: string;
+  status?: string;
 }
