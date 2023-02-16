@@ -28,9 +28,13 @@ const ColumnTask: React.FC<ColumnTaskProps> = ({
     select-none
   `);
 
-
   return (
-    <div className={mainClasses} onClick={() => setIsModalVisible('task', 'create')}>
+    <div className={mainClasses} onClick={() => setIsModalVisible({
+      type: 'task',
+      method: 'update',
+      title: 'Modify Task',
+      status: ''
+    })}>
       <p className="font-semibold text-lg dark:text-white text-black">{taskHeader}</p>
       <p className="text-md text-medium_grey">0 of 3 subtasks</p>
     </div>
