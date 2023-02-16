@@ -7,7 +7,9 @@ import { twMerge } from 'tailwind-merge';
 const MenuItem: React.FC<MenuItemProps> = ({
   display,
   link,
-  isActive
+  isActive,
+  onClick,
+  isCreate
 }) => {
   const activeClasses = isActive ? 'bg-main_purple' : '';
   const mainClasses = twMerge(`
@@ -23,10 +25,11 @@ const MenuItem: React.FC<MenuItemProps> = ({
     hover:text-white 
     hover:cursor-pointer
     ${activeClasses}
+    ${isCreate ? 'text-main_purple' : ''}
   `);
   return (
-    <div className={mainClasses}>
-      <Image src={iconBoard} alt="icon board"  className="ml-4 "/>
+    <div className={mainClasses} onClick={() => onClick ? onClick() : ''}>
+      <Image src={iconBoard} alt="icon board"  className="ml-4 font-main_purple "/>
       <span className="font-bold">{display}</span>
     </div>
   )
