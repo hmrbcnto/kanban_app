@@ -20,6 +20,9 @@ const Modal: React.FC<ModalProps> = ({
     items-center 
     justify-center
     fixed
+    transition-all
+    duration-300
+    overflow-y-scroll
   `);
 
   const modalClasses = twMerge(`
@@ -33,6 +36,8 @@ const Modal: React.FC<ModalProps> = ({
     fixed
     shadow-sm
     z-[104]
+    overflow-y-hidden
+    overflow-y-scroll
   `);
 
   return (
