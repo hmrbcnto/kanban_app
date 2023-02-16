@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
     items-center
     justify-center
     hover:cursor-pointer
-    w-60
+    w-full
     select-none
     ${disabledClasses}
   `)
