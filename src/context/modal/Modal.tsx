@@ -1,18 +1,26 @@
+import { type } from 'os';
 import { createContext } from 'react';
 
 interface ModalContextValues {
   type: ModalType;
   method: ModalMethod;
   isModalVisible: boolean;
-  setIsModalVisible: (type: ModalType, method: ModalMethod) => void;
+  setIsModalVisible: (modalVisibleProps: ModalVisibleProps) => void;
   closeFunction: () => void;
 };
+
+export type ModalVisibleProps = {
+  type: ModalType,
+  method: ModalMethod,
+  title: string,
+  status: string
+}
 
 const defaultValue: ModalContextValues = {
   type: '',
   method: '',
   isModalVisible: false,
-  setIsModalVisible: (type: ModalType, method: ModalMethod) => {},
+  setIsModalVisible: (modalVisibleProps: ModalVisibleProps) => {},
   closeFunction: () => {}
 };
 

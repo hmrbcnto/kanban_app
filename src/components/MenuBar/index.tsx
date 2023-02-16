@@ -95,7 +95,12 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
           <Button
             text={<><Image src={addTask} alt="cross icon" className="object-none dark:text" /><span className="font-semibold text-white hidden md:block pl-2">Add New Task </span></>}
             type="primary"
-            onClick={() => setIsModalVisible('task', 'create')}
+            onClick={() => setIsModalVisible({
+              type: 'warning',
+              method: 'create',
+              title: 'Delete this task?',
+              status: 'warning'
+            })}
           />
           <Image src={verticalEllipsis} alt="vertical ellipsis" className="object-none" />
         </div>
@@ -119,7 +124,12 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
              <MenuItem
                 display="+ Create New Board"
                 key="create_board"
-                onClick={() => setIsModalVisible('board', 'create')}
+                onClick={() => setIsModalVisible({
+                  type: 'board',
+                  method: 'create',
+                  title: 'Create a New Board',
+                  status: ''
+                })}
                 isCreate={true}
               /> 
           </div>
