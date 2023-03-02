@@ -11,7 +11,6 @@ const ModalContextWrapper: React.FC<{ children: React.ReactNode | React.ReactNod
 
   const toggleModalVisibility = (modalVisibleProps: ModalVisibleProps) => {
     const { type, method, title, status } = modalVisibleProps;
-    console.log(modalVisibleProps);
     setTitle(title);
     setStatus(status);
     setModalType(type);
