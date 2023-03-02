@@ -13,7 +13,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
   modalTitle,
   status
 }) => {
-  const descriptionText = 'Are you sure yo uwant to do this? This action is irreversible.';
+  const descriptionText = 'Are you sure you want to do this? This action is irreversible.';
   const renderModalForm = () => {
     switch(type) {
       case 'board':
