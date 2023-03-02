@@ -9,7 +9,8 @@ const MenuItem: React.FC<MenuItemProps> = ({
   link,
   isActive,
   onClick,
-  isCreate
+  isCreate,
+  id
 }) => {
   const activeClasses = isActive ? 'bg-main_purple' : '';
   const mainClasses = twMerge(`
@@ -28,7 +29,10 @@ const MenuItem: React.FC<MenuItemProps> = ({
     ${isCreate ? 'text-main_purple' : ''}
   `);
   return (
-    <div className={mainClasses} onClick={() => onClick ? onClick() : ''}>
+    <div 
+      className={mainClasses} onClick={() => onClick ? onClick() : ''}
+      id={id}
+    >
       <Image src={iconBoard} alt="icon board"  className="ml-4 font-main_purple "/>
       <span className="font-bold">{display}</span>
     </div>

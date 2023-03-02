@@ -120,6 +120,8 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
                   display={menuItem.display}
                   link={menuItem.link}
                   key={menuItem.link}
+                  id={menuItem.id}
+                  onClick={() => changeCurrentBoard(menuItem.id)}
                 />
               ))}
              <MenuItem
@@ -131,6 +133,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
                   title: 'Create a New Board',
                   status: ''
                 })}
+                id={'default'}
                 isCreate={true}
               /> 
           </div>

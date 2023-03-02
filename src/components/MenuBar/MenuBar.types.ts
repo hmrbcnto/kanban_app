@@ -8,4 +8,5 @@ export interface MenuItemProps {
   isActive?: string;
   onClick?: () => void;
   isCreate?: boolean;
+  id: string;
 };

@@ -111,6 +111,7 @@ const ModifyForm: React.FC = () => {
         onAdd={subTaskOnAdd}
         value={taskData.subTasks}
         titleText="Subtasks"
+        addButtonText="+ Add New Subtask"
       />
       <Dropdown
         id="status"

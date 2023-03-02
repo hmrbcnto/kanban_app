@@ -81,11 +81,12 @@ const BoardForm: React.FC<BoardFormProps> = ({
         onAdd={columnOnAdd}
         value={boardData?.columns}
         titleText="Board Columns"
+        addButtonText="+ Add New Columns"
       />
       <div className="w-full">
         <Button
           type="primary"
-          text="Create Board"
+          text="Create New Board"
         />
       </div>
     </div>
