@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { MenuBarProps, MenuItemProps } from './MenuBar.types';
 import logoMobile from '../../../assets/logo-mobile.svg';
@@ -16,11 +16,19 @@ import ThemeSwitch from '../ThemeSwitch';
 import MenuItem from './MenuItem';
 import ModalContext from '@/context/modal/Modal';
 import BoardContext from '@/context/board/Board';
+import SelectBoardModal from '../SelectBoardModal';
 
 const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
   const { setIsModalVisible } = useContext(ModalContext);
-  const { board, changeCurrentBoard } = useContext(BoardContext);
+  const { currentBoard, changeCurrentBoard } = useContext(BoardContext);
+  // TODO: Turn these two useStates into a singular useReducer??? Think about it.
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [isMobileModalOpen, setIsMobileModalOpen] = useState<boolean>(false);
+  const [windowSize, setWindowSize] = useState<number>(0);
+
+  useEffect(() => {
+    setWindowSize(window.innerWidth);
+  }, [])
 
   const mobileMenuBarClasses = twMerge(`
     absolute
@@ -79,6 +87,12 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
 
   return (
     <>
+      {/* Mobile Change Bar Modal */}
+      <SelectBoardModal
+        menuItems={menuItems}
+        isVisible={isMobileModalOpen}
+        closeFunction={() => setIsMobileModalOpen(false)}
+      />
       {/* Topbar */}
       <div className={mobileMenuBarClasses}>
         <div className="flex gap-4">
@@ -87,8 +101,13 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
             <Image src={logoDark} alt="light logo" className="hidden sm:flex dark:hidden" />
             <Image src={logoLight} alt="dark logo" className="hidden dark:sm:flex" />
           </div>  
-          <div className="flex gap-2 font-extrabold text-xl items-center dark:text-white hover:cursor-pointer">
-            {board?.name}
+          <div 
+            className="flex gap-2 font-extrabold text-xl items-center dark:text-white hover:cursor-pointer"
+            onClick={() => {
+              windowSize <= 640 ? setIsMobileModalOpen(true) : ''
+            }}
+          >
+            {currentBoard?.name}
             <Image src={chevronDown} alt="chevron down" className="object-none" width={10} height={7} />
           </div>
         </div>
