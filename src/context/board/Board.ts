@@ -4,7 +4,8 @@ import { createContext } from 'react';
 interface BoardContextValues {
   board?: {
     name: string,
-    tasks: ColumnTaskProps[]
+    tasks: ColumnTaskProps[],
+    statuses: string[]
   },
   changeCurrentBoard: (id: string) => void
 }
@@ -12,7 +13,8 @@ interface BoardContextValues {
 const defaultValue: BoardContextValues = {
   board: {
     name: 'Default Board Name',
-    tasks: []
+    tasks: [],
+    statuses: ['Status A', 'Status B']
   },
   changeCurrentBoard: (id: string) => {}
 };
