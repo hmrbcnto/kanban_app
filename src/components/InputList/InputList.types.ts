@@ -5,4 +5,5 @@ export interface InputListProps {
   onAdd?: () => void;
   value: string[];
   titleText?: string;
+  addButtonText: string;
 };

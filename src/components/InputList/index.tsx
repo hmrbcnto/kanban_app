@@ -11,7 +11,8 @@ const InputList: React.FC<InputListProps> = ({
   onChange,
   value,
   onRemove,
-  onAdd
+  onAdd,
+  addButtonText
 }) => {
 
   return (
@@ -36,7 +37,7 @@ const InputList: React.FC<InputListProps> = ({
       })}
       <Button 
         type="secondary"
-        text="+ Add New Subtask"
+        text={addButtonText}
         onClick={onAdd}
       />
     </div>
