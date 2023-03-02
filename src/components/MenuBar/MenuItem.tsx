@@ -19,7 +19,8 @@ const MenuItem: React.FC<MenuItemProps> = ({
     items-center 
     p-2 
     pl-0 
-    w-[80%] 
+    md:w-[80%] 
+    w-full
     hover:bg-main_purple 
     rounded-r-full 
     text-medium_grey 
