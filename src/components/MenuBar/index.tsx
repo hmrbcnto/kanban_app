@@ -14,11 +14,12 @@ import Image from 'next/image';
 import Button from '../Button';
 import ThemeSwitch from '../ThemeSwitch';
 import MenuItem from './MenuItem';
-import Modal from '../Modal';
 import ModalContext from '@/context/modal/Modal';
+import BoardContext from '@/context/board/Board';
 
 const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
   const { setIsModalVisible } = useContext(ModalContext);
+  const { board, changeCurrentBoard } = useContext(BoardContext);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
 
   const mobileMenuBarClasses = twMerge(`
@@ -86,8 +87,8 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
             <Image src={logoDark} alt="light logo" className="hidden sm:flex dark:hidden" />
             <Image src={logoLight} alt="dark logo" className="hidden dark:sm:flex" />
           </div>  
-          <div className="flex gap-2 font-extrabold text-xl items-center dark:text-white">
-            Platform Launch
+          <div className="flex gap-2 font-extrabold text-xl items-center dark:text-white hover:cursor-pointer">
+            {board?.name}
             <Image src={chevronDown} alt="chevron down" className="object-none" width={10} height={7} />
           </div>
         </div>
