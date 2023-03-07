@@ -35,12 +35,15 @@ const SelectBoardModal: React.FC<SelectBoardModalProps> = ({
         <MenuItem
           display="+ Create New Board"
           key="create_board"
-          onClick={() => setIsModalVisible({
-            type: 'board',
-            method: 'create',
-            title: 'Create a New Board',
-            status: ''
-          })}
+          onClick={() => {
+            setIsModalVisible({
+              type: 'board',
+              method: 'create',
+              title: 'Create a New Board',
+              status: ''
+            });
+            closeFunction();
+          }}
           id={'default'}
           isCreate={true}
         />
