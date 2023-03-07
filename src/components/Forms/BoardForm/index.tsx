@@ -1,23 +1,25 @@
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import InputList from '@/components/InputList';
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 import { BoardFormProps, BoardFormReducer } from './BoardForm.types';
+import BoardContext from '@/context/board/Board';
 
 const BoardForm: React.FC<BoardFormProps> = ({
   type='create',
   initialValues,
   submitFunction
 }) => {
+  const { createNewBoard } = useContext(BoardContext);
   const [boardData, updateBoardData] = useReducer((state: any, action: BoardFormReducer) => {
     const newEvent = {...state};
-
+    console.log(action);
     switch(action.type) {
       case 'updateName': 
         newEvent.name = action.name;
         break;
       case 'updateColumn':
-        if (!action.updatedColumns?.index) {
+        if (action.updatedColumns?.index === undefined) {
           return;
         }
         const updatedColumns = [...state.columns];
@@ -25,7 +27,7 @@ const BoardForm: React.FC<BoardFormProps> = ({
         newEvent.columns = updatedColumns;
         break;
       case 'removeColumn':
-        if (!action.updatedColumns?.index) {
+        if (action.updatedColumns?.index === undefined) {
           return;
         }
         const removedColumns = [...state.columns];
