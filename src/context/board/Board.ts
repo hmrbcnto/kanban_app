@@ -6,6 +6,11 @@ export interface BoardSummaryObject {
   id: string;
   name: string;
 }
+
+export interface BoardObject {
+  name: string;
+  columns: string[];
+}
 interface BoardContextValues {
   currentBoard?: {
     name: string;
@@ -13,7 +18,8 @@ interface BoardContextValues {
     statuses: string[];
   };
   boardList: BoardSummaryObject[];
-  changeCurrentBoard: (id: string) => void
+  changeCurrentBoard: (id: string) => void;
+  createNewBoard: (newBoard: BoardObject) => void;
 }
 
 const defaultValue: BoardContextValues = {
@@ -32,7 +38,8 @@ const defaultValue: BoardContextValues = {
       id: '12346'
     }
   ],
-  changeCurrentBoard: (id: string) => {}
+  changeCurrentBoard: (id: string) => {},
+  createNewBoard: (newBoard: BoardObject) => {},
 };
 
 const BoardContext = createContext(defaultValue);

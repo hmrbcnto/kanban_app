@@ -1,7 +1,7 @@
 import { getBoardList } from '@/apis/board';
 import { ColumnTaskProps } from '@/components/ColumnTask/ColumnTask.types';
 import { useState, useEffect } from 'react';
-import BoardContext, { BoardSummaryObject } from './Board';
+import BoardContext, { BoardObject, BoardSummaryObject } from './Board';
 
 
 const sampleTasks: ColumnTaskProps[] = [
@@ -37,7 +37,19 @@ const BoardContextWrapper: React.FC<{ children: React.ReactNode | React.ReactNod
   // Fetch here
  }
 
- return (<BoardContext.Provider value={{ currentBoard, boardList, changeCurrentBoard }}> {children} </BoardContext.Provider>);
+  const createNewBoard = (newBoard: BoardObject) => {
+    // Request here, run on return
+    const newBoardList: BoardSummaryObject[] = [
+      ...boardList,
+      {
+        name: newBoard.name,
+        id: '123456'
+      }
+    ];
+    setBoardList(newBoardList);
+  }
+
+ return (<BoardContext.Provider value={{ currentBoard, boardList, changeCurrentBoard, createNewBoard }}> {children} </BoardContext.Provider>);
 };
 
 export default BoardContextWrapper;
