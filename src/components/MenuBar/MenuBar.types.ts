@@ -1,9 +1,9 @@
 export interface MenuBarProps {
-  menuItems: MenuItemProps[];  
+  menuItems?: MenuItemProps[];  
 };
 
 export interface MenuItemProps {
-  display: string;
+  name: string;
   id: string;
   link?: string;
   isActive?: string;

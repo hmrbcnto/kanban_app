@@ -24,7 +24,7 @@ const SelectBoardModal: React.FC<SelectBoardModalProps> = ({
         <div className="flex flex-col w-full">
           {menuItems.map((menuItem: MenuItemProps) => (
             <MenuItem
-              display={menuItem.display}
+              name={menuItem.name}
               link={menuItem.link}
               key={menuItem.link}
               id={menuItem.id}
@@ -33,7 +33,7 @@ const SelectBoardModal: React.FC<SelectBoardModalProps> = ({
           ))}
         </div>
         <MenuItem
-          display="+ Create New Board"
+          name="+ Create New Board"
           key="create_board"
           onClick={() => {
             setIsModalVisible({

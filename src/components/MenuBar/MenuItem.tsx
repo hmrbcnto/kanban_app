@@ -5,7 +5,7 @@ import iconBoard from '../../../assets/icon-board.svg';
 import { twMerge } from 'tailwind-merge';
 
 const MenuItem: React.FC<MenuItemProps> = ({
-  display,
+  name,
   link,
   isActive,
   onClick,
@@ -35,7 +35,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       id={id}
     >
       <Image src={iconBoard} alt="icon board"  className="ml-4 font-main_purple "/>
-      <span className="font-bold">{display}</span>
+      <span className="font-bold">{name}</span>
     </div>
   )
 };

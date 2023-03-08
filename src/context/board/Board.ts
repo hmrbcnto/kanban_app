@@ -1,7 +1,6 @@
 import { ColumnTaskProps } from '@/components/ColumnTask/ColumnTask.types';
 import { createContext } from 'react';
 
-
 export interface BoardSummaryObject {
   id: string;
   name: string;
