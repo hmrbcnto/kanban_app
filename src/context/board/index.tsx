@@ -46,6 +46,7 @@ const BoardContextWrapper: React.FC<{ children: React.ReactNode | React.ReactNod
         id: '123456'
       }
     ];
+    // Validation here
     setBoardList(newBoardList);
   }
 

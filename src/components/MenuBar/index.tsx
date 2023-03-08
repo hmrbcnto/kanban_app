@@ -18,7 +18,8 @@ import ModalContext from '@/context/modal/Modal';
 import BoardContext from '@/context/board/Board';
 import SelectBoardModal from '../SelectBoardModal';
 
-const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
+const MenuBar: React.FC<MenuBarProps> = () => {
+  const { boardList } = useContext(BoardContext);
   const { setIsModalVisible } = useContext(ModalContext);
   const { currentBoard, changeCurrentBoard } = useContext(BoardContext);
   // TODO: Turn these two useStates into a singular useReducer??? Think about it.
@@ -89,7 +90,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
     <>
       {/* Mobile Change Bar Modal */}
       <SelectBoardModal
-        menuItems={menuItems}
+        menuItems={boardList}
         isVisible={isMobileModalOpen}
         closeFunction={() => setIsMobileModalOpen(false)}
       />
@@ -134,9 +135,9 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
           </div>
           <div className="">
             <p className="text-medium_grey pl-4 pb-2"> ALL BOARDS (3)</p>
-            {menuItems.map((menuItem: MenuItemProps) => (
+            {boardList.map((menuItem: MenuItemProps) => (
                 <MenuItem
-                  display={menuItem.display}
+                  name={menuItem.name}
                   link={menuItem.link}
                   key={menuItem.link}
                   id={menuItem.id}
@@ -144,7 +145,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
                 />
               ))}
              <MenuItem
-                display="+ Create New Board"
+                name="+ Create New Board"
                 key="create_board"
                 onClick={() => setIsModalVisible({
                   type: 'board',

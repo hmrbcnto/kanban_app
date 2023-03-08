@@ -4,6 +4,7 @@ import InputList from '@/components/InputList';
 import React, { useContext, useReducer } from 'react';
 import { BoardFormProps, BoardFormReducer } from './BoardForm.types';
 import BoardContext from '@/context/board/Board';
+import ModalContext from '@/context/modal/Modal';
 
 const BoardForm: React.FC<BoardFormProps> = ({
   type='create',
@@ -11,9 +12,10 @@ const BoardForm: React.FC<BoardFormProps> = ({
   submitFunction
 }) => {
   const { createNewBoard } = useContext(BoardContext);
+  const { closeFunction } = useContext(ModalContext);
   const [boardData, updateBoardData] = useReducer((state: any, action: BoardFormReducer) => {
     const newEvent = {...state};
-    console.log(action);
+
     switch(action.type) {
       case 'updateName': 
         newEvent.name = action.name;
@@ -23,7 +25,10 @@ const BoardForm: React.FC<BoardFormProps> = ({
           return;
         }
         const updatedColumns = [...state.columns];
-        updatedColumns[action?.updatedColumns?.index] = action?.updatedColumns?.value;
+        updatedColumns[action?.updatedColumns?.index] = {
+          value: action?.updatedColumns?.value,
+          code: action?.updatedColumns?.value?.toLowerCase()
+        };
         newEvent.columns = updatedColumns;
         break;
       case 'removeColumn':
@@ -36,7 +41,10 @@ const BoardForm: React.FC<BoardFormProps> = ({
         break;
       case 'addColumn':
         const addedColumns = [...state.columns];
-        addedColumns.push('');
+        addedColumns.push({
+          value: '',
+          code: ''
+        });
         newEvent.columns = addedColumns;
         break;
     }
@@ -81,7 +89,7 @@ const BoardForm: React.FC<BoardFormProps> = ({
         onChange={columnOnChange}
         onRemove={columnOnRemove}
         onAdd={columnOnAdd}
-        value={boardData?.columns}
+        value={boardData?.columns?.map((column: any) => column?.value)}
         titleText="Board Columns"
         addButtonText="+ Add New Columns"
       />
@@ -89,6 +97,11 @@ const BoardForm: React.FC<BoardFormProps> = ({
         <Button
           type="primary"
           text="Create New Board"
+          // Add validation here
+          onClick={() => {
+            createNewBoard(boardData);
+            closeFunction();
+          }}
         />
       </div>
     </div>
