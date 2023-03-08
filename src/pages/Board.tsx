@@ -11,19 +11,6 @@ import Script from 'next/script';
 import React, { useContext, useState, useEffect } from 'react';
 import { getBoardData } from '../apis/board';
 
-const sampleMenuItems: MenuItemProps[] = [
-  {
-    display: 'Platform Launch',
-    link: 'platform',
-    id: 'menuitem1'
-  },
-  {
-    display: 'Platform Chonk',
-    link: 'chonk',
-    id: 'menuitem2'
-  }
-];
-
 const Board: React.FC = () => {
   const { setIsModalVisible } = useContext(ModalContext);
   const [board, setBoard] = useState<any>({});
@@ -36,9 +23,7 @@ const Board: React.FC = () => {
   }, [])
   return (
     <>
-      <MenuBar 
-        menuItems={sampleMenuItems}
-      />
+      <MenuBar />
       <div className="w-screen h-screen bg-light_grey dark:bg-very_dark_grey pt-20 flex gap-4 overflow-scroll overflow-x-scroll">
         <BoardColumn
           name="todo"
