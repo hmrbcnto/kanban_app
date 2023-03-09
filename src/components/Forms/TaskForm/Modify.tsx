@@ -3,25 +3,26 @@ import Dropdown from '@/components/Dropdown';
 import Input from '@/components/Input';
 import InputList from '@/components/InputList';
 import TextArea from '@/components/TextArea';
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 import { TaskFormReducer } from './TaskForm.types';
+import BoardContext from '@/context/board/Board';
+
+const processStatusString = (string: string) => {
+  return string.replace('_', ' ').replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 
 
 const ModifyForm: React.FC = () => {
-  const dropdownConstants = [
+  const { currentBoard } = useContext(BoardContext);
+  const processedDropdownConstants = currentBoard?.statuses.map((status: string, index: number) => (
     {
-      id: 1,
-      key: 1,
-      value: 'todo',
-      display: 'Todo'
-    },
-    {
-      id: 2,
-      key: 2,
-      value: 'doing',
-      display: 'Doing'
-    },
-  ]
+      id: index,
+      key: index,
+      value: status,
+      display: processStatusString(status)
+    }
+  ));
+
   const [taskData, updateTaskData] = useReducer((state: any, action: TaskFormReducer) => {
     const newEvent = {...state};
 
@@ -116,7 +117,7 @@ const ModifyForm: React.FC = () => {
       <Dropdown
         id="status"
         key="status"
-        dropdownItems={dropdownConstants}
+        dropdownItems={processedDropdownConstants || []}
         onChange={(value) => updateTaskData({ type: 'updateStatus', status: value })}
         value={taskData.status}
         title="Status"
