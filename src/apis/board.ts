@@ -1,10 +1,10 @@
 import { ColumnTaskProps } from "@/components/ColumnTask/ColumnTask.types"
-import { BoardSummaryObject } from "@/context/board/Board"
+import { BoardContextValues, BoardSummaryObject } from "@/context/board/Board"
 
 export const getBoardData = () => {
   const sampleTasks: ColumnTaskProps[] = [
     {
-      taskHeader: 'Sample Column Header',
+      name: 'Sample Column Header',
       status: 'doing',
       description: 'Sample Description',
       subtasks: [

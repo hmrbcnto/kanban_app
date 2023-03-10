@@ -28,11 +28,11 @@ const BoardColumn: React.FC<BoardColumnProps> = ({
       {tasks?.map((task: ColumnTaskProps) => {
         return (
           <ColumnTask
-            taskHeader={task.taskHeader}
+            name={task.name}
             status={task.status}
             description={task.description}
             subtasks={task.subtasks}
-            key={task.taskHeader}
+            key={task.name}
             onClick={onClick}
         />
         )

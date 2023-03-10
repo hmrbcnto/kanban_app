@@ -2,11 +2,11 @@ import { getBoardList } from '@/apis/board';
 import { ColumnTaskProps } from '@/components/ColumnTask/ColumnTask.types';
 import { useState, useEffect } from 'react';
 import BoardContext, { BoardObject, BoardSummaryObject } from './Board';
-
+import { TaskDbMock } from '../apimock/ApiMock';
 
 const sampleTasks: ColumnTaskProps[] = [
   {
-    taskHeader: 'Sample Column Header',
+    name: 'Sample Column Header',
     status: 'doing',
     description: 'Sample Description',
     subtasks: [
@@ -17,15 +17,21 @@ const sampleTasks: ColumnTaskProps[] = [
     ],
     onClick: () => { console.log('wtf)')}
   }
-]
-const defaultBoard = {
+];
+
+const defaultBoard: BoardObject = {
   name: 'Sample Board',
-  tasks: sampleTasks,
+  tasks: [{
+    status: 'Sample Status',
+    name: 'Sample Name', 
+    description: 'ahehehe',
+    subtasks: []
+  }],
   statuses: ['Status A', 'Status B']
 }
 
 const BoardContextWrapper: React.FC<{ children: React.ReactNode | React.ReactNode[] }> = ({ children }) => {
- const [currentBoard, setCurrentBoard] = useState(defaultBoard);
+ const [currentBoard, setCurrentBoard] = useState<BoardObject | undefined>(defaultBoard);
  const [boardList, setBoardList] = useState<BoardSummaryObject[]>([])
 
   useEffect(() => {
@@ -34,7 +40,7 @@ const BoardContextWrapper: React.FC<{ children: React.ReactNode | React.ReactNod
   }, [])
 
  const changeCurrentBoard = (id: string) => {
-  // Fetch here
+  // Query here
  }
 
   const createNewBoard = (newBoard: BoardObject) => {

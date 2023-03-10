@@ -1,9 +1,9 @@
 export interface ColumnTaskProps {
-  taskHeader?: string;
-  status: 'todo' | 'doing' | 'done';
+  status: string;
   description?: string;
   subtasks: SubtaskProps[];
   onClick: () => void;
+  name: string
 };
 
 export interface SubtaskProps {

@@ -1,5 +1,6 @@
 import { ColumnTaskProps } from '@/components/ColumnTask/ColumnTask.types';
 import { createContext } from 'react';
+import { TaskDbMock } from '../apimock/ApiMock';
 
 export interface BoardSummaryObject {
   id: string;
@@ -8,14 +9,11 @@ export interface BoardSummaryObject {
 
 export interface BoardObject {
   name: string;
-  columns: string[];
+  tasks: TaskDbMock[];
+  statuses: string[];
 }
-interface BoardContextValues {
-  currentBoard?: {
-    name: string;
-    tasks: ColumnTaskProps[];
-    statuses: string[];
-  };
+export interface BoardContextValues {
+  currentBoard?: BoardObject;
   boardList: BoardSummaryObject[];
   changeCurrentBoard: (id: string) => void;
   createNewBoard: (newBoard: BoardObject) => void;
